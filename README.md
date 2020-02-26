@@ -1,11 +1,18 @@
-# Sample Snack app
+# What To Eat
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by clicking the **Run** button or use the simulator by clicking **Tap to Play**. When you're done, click **Save** and share the link!
+A simple app proposing a random meal when you don't have any ideas.
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Export** your project and use it with [expo-cli](https://docs.expo.io/versions/latest/introduction/installation.html).
+#### TODO 
+  - Add ingredients to make meal
+    * Add settings page for each entries 
+  - Add place to go (restaurant, groceries store)
+    * Existing list or add in it
+  - Keep historic of what you decided to eat
+  - Make it pretty ! <3
+ 
+  
+#### IDEAS 
+  - Link to Deliveroo
+  - Adding recurent meal
+  - Weighting each meal based on previous choice (more likely if it hasn't been eaten for a long time)
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the **Embed** button.
-
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.io).
-
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack-web).

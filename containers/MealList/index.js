@@ -7,24 +7,30 @@ import {
   Button,
   FlatList,
   TouchableHighlight,
-  Alert,
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import store from '../../base/redux/store';
 import { addMeal, deleteMeal } from '../../base/redux/actions';
 import styles from './styles';
+import * as RootNavigation from '../../base/routes/RootNavigation';
+import AsyncStorageWrapper from '../../base/asyncStorage';
 
 class MealList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputTextValue: '',
+      inputTextValue: ''
     };
   }
 
-  addMeal = meal => {
+  addMeal = () => {
     if (this.state.inputTextValue !== '') {
-      store.dispatch(addMeal(this.state.inputTextValue));
+      const meal = {
+        name: this.state.inputTextValue,
+        ingredients: ['Ing 1', 'Ing 2', 'Ing 3']
+      };
+      store.dispatch(addMeal(meal));
       this.setState({ inputTextValue: '' });
     }
   };
@@ -32,6 +38,7 @@ class MealList extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        {/* <AsyncStorageWrapper /> */}
         <View style={styles.topWrapper}>
           <Text style={styles.paragraph}>Enter new meal type</Text>
           <TextInput
@@ -43,28 +50,39 @@ class MealList extends React.Component {
         </View>
         <FlatList
           data={this.props.mealList}
-          renderItem={({ item }) => (
+          renderItem={({ item, id }) => (
             <TouchableHighlight
+              onPress={() =>
+                RootNavigation.navigate('MealSheet', { meal: item })
+              }
               onLongPress={() =>
                 Alert.alert(
                   'Delete a meal',
-                  'Would you like to delete this meal : ' + item,
+                  'Would you like to delete this meal : ' + item.name,
                   [
                     {
                       text: 'Cancel',
                       onPress: () => console.log('Cancel Pressed'),
-                      style: 'cancel',
+                      style: 'cancel'
                     },
                     {
                       text: 'OK',
-                      onPress: () => store.dispatch(deleteMeal(item)),
-                    },
+                      onPress: () => store.dispatch(deleteMeal(item))
+                    }
                   ],
                   { cancelable: true }
                 )
-              }>
+              }
+              key={id}
+            >
               <View style={styles.itemWrapper}>
-                <Text style={styles.item}>{item}</Text>
+                <Text style={styles.item}>{item.name}</Text>
+                <Text style={styles.subItem}>
+                  {'Ingredients : '}
+                  {item.ingredients.map(item => {
+                    return item + ', ';
+                  })}
+                </Text>
               </View>
             </TouchableHighlight>
           )}
@@ -76,5 +94,5 @@ class MealList extends React.Component {
 }
 
 export default connect(state => ({
-  mealList: state.mealList,
+  mealList: state.mealList
 }))(MealList);

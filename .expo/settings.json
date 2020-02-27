@@ -1,6 +1,6 @@
 {
-  "urlRandomness": "hv-sbt",
-  "hostType": "lan",
+  "urlRandomness": "4d-kbx",
+  "hostType": "tunnel",
   "lanType": "ip",
   "dev": true,
   "minify": false,

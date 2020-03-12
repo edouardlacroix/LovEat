@@ -1,6 +1,6 @@
 # What To Eat
 
-A simple app proposing a random meal when you don't have any ideas.
+A simple app proposing a random meal from your own list when you don't have any ideas.
 
 #### TODO 
   - Add ingredients to make meal
